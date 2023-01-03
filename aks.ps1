@@ -1,5 +1,5 @@
 # variables
-$SUBSCRIPTION='a8f77654-9254-4d5f-9c61-712b81de23c6'
+$SUBSCRIPTION=$env:AZURE_TECH_SUBSCRIPTION
 $LOCATION='northeurope'
 $AKS_RESOURCE_GROUP='rg-ne-demo-aks'
 $DNS_RESOURCE_GROUP='rg-ne-demo-dns'

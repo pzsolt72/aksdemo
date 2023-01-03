@@ -10,7 +10,7 @@ This tutorial demonstrates the followings:
 
 ## Usage
 
-The deployment and the setup process is in the aks.ps1 power shell script file. The script file contains commands:
+The deployment and the setup process is in the aks.ps1 power shell script file. The script file contains commands with:
 - Azure cli
 - kubectl
 - helm
@@ -87,6 +87,7 @@ tls:
 Log in to the aksdemotester VM - your IP will differ. The VM is in the AKS node pool resource group. 
 The username and the password is not protected in the aks.ps1 file, modify and secure it for yourself!!!
 
+Please check the generated Private DNS zone records, the demoapp host should be registered in it.
 
 Test
 ```
