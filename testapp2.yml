@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp-deployment
+  labels:
+    app: helloapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloapp
+  template:
+    metadata:
+      labels:
+        app: helloapp
+    spec:
+      containers:
+        - name: helloapp
+          image: strm/helloworld-http
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloapp-service
+  labels:
+    app: helloapp
+spec:
+  type: ClusterIP
+  selector:
+    app: helloapp
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: helloapp-ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: ca-cluster-issuer
+    cert-manager.io/common-name: helloapp.demoaks.com
+    cert-manager.io/duration: 720h
+    # cert-manager.io/issuer: my-ca-issuer
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: helloapp.demoaks.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: helloapp-service
+                port: 
+                  number: 80
+  tls:
+  - hosts:
+    - helloapp.demoaks.com
+    secretName: helloapp-secret            

@@ -188,7 +188,7 @@ kubectl get pods -n ext-dns
 # get the pods from cert manager for logs
 kubectl get pods -n cert-manager
 
-# kubectl logs externaldns-5df4f7d4fc-sbshm -f -n ext-dns
+# kubectl logs externaldns-5df4f7d4fc-bxxz2 -f -n ext-dns
 # kubectl logs -n cert-manager -f cert-manager-7599c44747-ds767
 
 # TEST
