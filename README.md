@@ -6,7 +6,7 @@ This tutorial demonstrates the followings:
 - AKS application Azure private DNS zone auto registration ( external dns )
 - AKS SSL handling with ingress controller ( cert maneger ) 
 
-![architectore diagram](./architecture.jpg)
+![architecture diagram](./architecture.jpg)
 
 ## Usage
 
@@ -14,20 +14,20 @@ The deployment and the setup process is in the aks.ps1 power shell script file. 
 - Azure cli
 - kubectl
 - helm
-- power shell
+- powershell
 
 To run the script you need access to the internet. The deployed extensions are downloaded from the internet.
 
-Befor the first run, set your subscription id in the aks.ps1 file. Also set the other parameters according to your taste, not mandatory.
-From command line run an az login command, then you can run the script.
+Before the first run, set your subscription id in the aks.ps1 file. Also set the other parameters according to your taste, not mandatory.
+From the command line run an az login command, then you can run the script.
 
 ## Private DNS zone
 
-The script creates an Azrue private DNS zone where the ingress hosts will be registered. The name can be overriden by a parameter in the aks.ps1 file.
+The script creates an Azure private DNS zone where the ingress hosts will be registered. The name can be overridden by a parameter in the aks.ps1 file.
 
 ## AKS deployment
 
-It deploys a simple AKS with managed identities and autoscale feature with one active node.
+It deploys a simple AKS with managed identities and autoscale features with one active node.
 
 ## Ingress controller
 
@@ -37,20 +37,20 @@ https://github.com/kubernetes/ingress-nginx
 
 Please note it is not the same as the Nginx Ingress controller.
 
-The deployment has an extra file atributum: internal-ingress.yml, that sets the Azure load balancer to private. The deploy is completed by helm.
+The deployment has an extra file attributum: internal-ingress.yml, that sets the Azure load balancer to private. The deploy is completed by helm.
 
 
 ## External DNS
 
 For further info, have a look at the documentation. https://github.com/kubernetes-sigs/external-dns
 
-The deployment file is external-dns.yml and run by kubectl apply -f command. The yml file is generated from external-dns.yml.tpl to replace the subscription id. It is set up to register into an Azure Private DNS zone, if you ant to use a public zone you have to modify the setup in the external-dns.yml.tpl and also in the aks.ps1 file for the proper RBAC role! 
+The deployment file is external-dns.yml and run by kubectl apply -f command. The yml file is generated from external-dns.yml.tpl to replace the subscription id. It is set up to register into an Azure Private DNS zone, if you want to use a public zone you have to modify the setup in the external-dns.yml.tpl and also in the aks.ps1 file for the proper RBAC role! 
 
 ## Cert manager
 
 For further info, have a look at the documentation. https://cert-manager.io/docs/
 
-The deploy is completed by helm.
+The deployment is completed by helm.
 The cert manager uses a CA issuer, the CA cert and key files are ca.crt and ca.key. You can create your own to replace the original files.
 
 
@@ -60,7 +60,7 @@ The test application is an Nginx deployment. The demo app deployment is in the t
 
 ### External DNS setup
 
-There is no set up in the demo app the external dns not limited to any Kubernetes namspace it whaches the new ingress resources to register the service host inti the Azure private DNS zone.
+There is no set up in the demo app. The external dns is not limited to any Kubernetes namespace, it watches the new ingress resources to register the service host inti the Azure private DNS zone.
 
 ### Cert manager setup
 
