@@ -1,3 +1,10 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: app1
+  labels:
+    env: dev
+---
 apiVersion: v1
 kind: Pod
 metadata:
