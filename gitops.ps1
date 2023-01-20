@@ -16,4 +16,4 @@ az k8s-configuration flux create -g $AKS_RESOURCE_GROUP `
 --scope cluster `
 -u https://github.com/pzsolt72/aksdemo `
 --branch main  `
---kustomization name=app1 path=./gitops/app1 prune=true 
+--kustomization name=demoapp path=./gitops/demoapp prune=true 
