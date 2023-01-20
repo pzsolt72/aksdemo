@@ -171,11 +171,25 @@ kubectl apply -f .\.tmp\cm-caissuer.yml
 
 
 ##############################################################
-#  Demo app
+#  Demo app with GitOps
 ##############################################################
 
 # install the test app
-kubectl apply -f .\testapp.yml
+# kubectl apply -f .\testapp.yml
+
+
+az extension add -n k8s-configuration
+az extension add -n k8s-extension
+
+az k8s-configuration flux create -g $AKS_RESOURCE_GROUP `
+-c $AKS_NAME `
+-n demoapp-gitops-config `
+-t managedClusters `
+--namespace gitops-config `
+--scope cluster `
+-u https://github.com/pzsolt72/aksdemo `
+--branch main  `
+--kustomization name=demoapp path=./gitops/demoapp prune=true 
 
 
 
