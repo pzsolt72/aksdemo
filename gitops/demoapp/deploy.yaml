@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: demoapp
-          image: nginx
+          image: nginx:1.22.0
           ports:
             - containerPort: 80
